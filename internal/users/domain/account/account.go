@@ -17,6 +17,11 @@ const (
 // Account 描述用户账户领域对象
 type Account struct {
 	ddd.AggregateRoot[uuid.UUID]
+	username    string       //用户名
+	nickname    string       // 昵称
+	roles       []uuid.UUID  // 角色
+	avatar      string       //头像
+	Email       string       // 邮箱
 	Phone       string       // 手机号
 	Pwd         string       // 密码
 	Salt        string       // 密码盐值
