@@ -5,7 +5,6 @@ import (
 	"errors"
 
 	"github.com/google/uuid"
-	"github.com/xiaohangshuhub/admin/internal/users/domain/dic/gender"
 	"github.com/xiaohangshuhub/admin/internal/users/domain/user"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
@@ -13,15 +12,15 @@ import (
 
 // UpdateCmd 更新用户命令,包含更新用户所需的信息
 type UpdateCmd struct {
-	ID       uuid.UUID     `json:"id"`
-	Nikename string        `json:"nikename"`
-	Roles    []uuid.UUID   `json:"roles"`
-	Avatar   string        `json:"avatar"`
-	Email    *string       `json:"email"`
-	Phone    *string       `json:"phone"`
-	Pwd      string        `json:"pwd"`
-	Salt     string        `json:"salt"`
-	Gender   gender.Gender `json:"gender"`
+	ID       uuid.UUID   `json:"id"`
+	Nikename string      `json:"nikename"`
+	Roles    []uuid.UUID `json:"roles"`
+	Avatar   string      `json:"avatar"`
+	Email    *string     `json:"email"`
+	Phone    *string     `json:"phone"`
+	Pwd      string      `json:"pwd"`
+	Salt     string      `json:"salt"`
+	Gender   user.Gender `json:"gender"`
 }
 
 type UpdateCmdHandler struct {

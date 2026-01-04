@@ -1,4 +1,4 @@
-package gender
+package user
 
 type Gender int8
 

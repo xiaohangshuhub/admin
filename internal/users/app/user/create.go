@@ -5,7 +5,6 @@ import (
 	"errors"
 
 	"github.com/google/uuid"
-	"github.com/xiaohangshuhub/admin/internal/users/domain/dic/gender"
 	"github.com/xiaohangshuhub/admin/internal/users/domain/user"
 
 	"go.uber.org/zap"
@@ -14,15 +13,15 @@ import (
 
 // CreateCmd 创建用户命令,包含创建用户所需的信息
 type CreateCmd struct {
-	Username string        // 用户名
-	Nickname string        // 昵称
-	Roles    []uuid.UUID   // 角色
-	Avatar   string        // 头像
-	Email    *string       // 邮箱
-	Phone    *string       // 手机号
-	Pwd      string        // 密码
-	Salt     string        // 密码盐值
-	Gender   gender.Gender // 性别
+	Username string      // 用户名
+	Nickname string      // 昵称
+	Roles    []uuid.UUID // 角色
+	Avatar   string      // 头像
+	Email    *string     // 邮箱
+	Phone    *string     // 手机号
+	Pwd      string      // 密码
+	Salt     string      // 密码盐值
+	Gender   user.Gender // 性别
 }
 
 type CreateCmdHandler struct {

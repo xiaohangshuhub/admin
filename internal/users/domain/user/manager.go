@@ -1,8 +1,9 @@
 package user
 
 import (
+	"time"
+
 	"github.com/google/uuid"
-	"github.com/xiaohangshuhub/admin/internal/users/domain/dic/gender"
 	"gorm.io/gorm"
 )
 
@@ -19,7 +20,7 @@ func NewManager(db *gorm.DB) *Manager {
 }
 
 // Create 创建一个新的用户账号,返回用户账号对象或错误信息。
-func (m *Manager) Create(username, nickname, avatar, pwd string, phone, email *string, createBy uuid.UUID, gender gender.Gender, roles []uuid.UUID) (*Account, *Error) {
+func (m *Manager) Create(username, nickname, avatar, pwd string, phone, email *string, createBy uuid.UUID, gender Gender, roles []uuid.UUID) (*Account, *Error) {
 
 	// 外部业务规则校验
 	account := &Account{}
@@ -54,13 +55,13 @@ func (m *Manager) Create(username, nickname, avatar, pwd string, phone, email *s
 }
 
 // Update 修改用户账号信息,返回修改后的用户账号或错误信息
-func (m *Manager) Update(id uuid.UUID, nickname, avatar string, phone, email *string, updateBy uuid.UUID, gender gender.Gender, roles []uuid.UUID) (*Account, *Error) {
+func (m *Manager) Update(id uuid.UUID, nickname, avatar string, phone, email *string, updateBy uuid.UUID, gender Gender, roles []uuid.UUID) (*Account, *Error) {
 
 	account := &Account{}
 	m.First(account, id)
 
 	// 用户是否存在
-	if account.ID != uuid.Nil {
+	if account.ID == uuid.Nil {
 		return nil, ErrUserNotFound
 	}
 
@@ -73,15 +74,15 @@ func (m *Manager) Update(id uuid.UUID, nickname, avatar string, phone, email *st
 		}
 	}
 
-	if account, err := account.SetNickname(nickname); err != nil {
+	if err := account.SetNickname(nickname); err != nil {
 		return account, err
 	}
 
-	if account, err := account.SetAvatar(avatar); err != nil {
+	if err := account.SetAvatar(avatar); err != nil {
 		return account, err
 	}
 
-	if account, err := account.SetRoles(roles); err != nil {
+	if err := account.SetRoles(roles); err != nil {
 		return account, err
 	}
 
@@ -89,5 +90,23 @@ func (m *Manager) Update(id uuid.UUID, nickname, avatar string, phone, email *st
 	account.Phone = phone
 	account.Email = email
 
+	return account, nil
+}
+
+// UpdatePwd 修改密码,返回修改密码后的账户信息或者错误
+func (m *Manager) UpdatePwd(id uuid.UUID, pwd string, updateBy uuid.UUID) (*Account, *Error) {
+
+	account := &Account{}
+	m.First(account, id)
+	// 用户是否存在
+	if account.ID == uuid.Nil {
+		return nil, ErrUserNotFound
+	}
+	if err := account.SetPassword(pwd); err != nil {
+		return account, err
+	}
+	time := time.Now()
+	account.UpdatedAt = &time
+	account.UpdatedBy = &updateBy
 	return account, nil
 }

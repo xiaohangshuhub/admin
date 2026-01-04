@@ -20,6 +20,52 @@ VALUES (1, 'active'),
     (2, 'disabled'),
     (3, 'locked');
 
+
+-- 性别表
+CREATE TABLE gender (
+    id SMALLINT NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    -- 约束
+    CONSTRAINT pk_gender PRIMARY KEY (id),
+    CONSTRAINT uk_gender_name UNIQUE (name)
+);
+
+COMMENT ON TABLE gender IS '性别表';
+
+COMMENT ON COLUMN gender.id IS '性别ID';
+
+COMMENT ON COLUMN gender.name IS '性别名称';
+
+-- 性别
+INSERT INTO
+    gender (id, name)
+VALUES (1, '保密'),
+    (2, '男'),
+    (3, '女');
+
+-- 规则类型表
+CREATE TABLE rule_type (
+    id SMALLINT NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    -- 约束
+    CONSTRAINT pk_rule_type PRIMARY KEY (id),
+    CONSTRAINT uk_rule_type_name UNIQUE (name)
+);
+
+COMMENT ON TABLE rule_type IS '规则表';
+
+COMMENT ON COLUMN rule_type.id IS '规则ID';
+
+COMMENT ON COLUMN rule_type.name IS '规则名称';
+
+-- 规则类型
+INSERT INTO
+    rule_type (id, name)
+VALUES (1, '菜单目录'),
+    (2, '菜单项'),
+    (3, '操作');
+
+
 -- 账号表
 CREATE TABLE accounts (
     id UUID NOT NULL,
