@@ -15,11 +15,11 @@ type UpdateCmd struct {
 	ID       uuid.UUID     `json:"id"`
 	Name     string        // 用户名
 	Route    string        // 昵称
-	icon     string        // 图标
-	desc     string        // 头像
-	weight   int32         // 权重
-	ftype    function.Type // 功能类型
-	parentID *uuid.UUID    // 父节点ID
+	Icon     string        // 图标
+	Desc     string        // 头像
+	Weight   int32         // 权重
+	FType    function.Type // 功能类型
+	ParentID *uuid.UUID    // 父节点ID
 }
 
 type UpdateCmdHandler struct {
@@ -44,7 +44,7 @@ func (h *UpdateCmdHandler) Handle(ctx context.Context, cmd UpdateCmd) (bool, err
 		return false, errors.New("invalid user id in context")
 	}
 
-	account, err := h.Manager.Update(cmd.ID, cmd.Name, cmd.Route, cmd.icon, cmd.desc, cmd.weight, cmd.ftype, cmd.parentID, uid)
+	account, err := h.Manager.Update(cmd.ID, cmd.Name, cmd.Route, cmd.Icon, cmd.Desc, cmd.Weight, cmd.FType, cmd.ParentID, uid)
 
 	if err != nil {
 		return false, err

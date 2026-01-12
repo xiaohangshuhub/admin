@@ -9,6 +9,14 @@ import (
 	"github.com/xiaohangshuhub/go-workit/pkg/ddd"
 )
 
+type Gender int8
+
+const (
+	Unknown Gender = iota + 1 // 保密
+	Male                      // 男
+	Female                    // 女
+)
+
 // Account 描述用户账户领域对象
 type Account struct {
 	ddd.AggregateRoot[uuid.UUID]                // ID
