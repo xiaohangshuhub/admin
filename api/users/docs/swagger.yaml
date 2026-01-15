@@ -1,4 +1,112 @@
 definitions:
+  github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermCreateCmd:
+    properties:
+      desc:
+        description: 头像
+        type: string
+      icon:
+        description: 图标
+        type: string
+      parentID:
+        description: 父节点ID
+        type: string
+      perm:
+        description: 权限
+        type: string
+      route:
+        description: 昵称
+        type: string
+      title:
+        description: 用户名
+        type: string
+      type:
+        allOf:
+        - $ref: '#/definitions/github_com_xiaohangshuhub_admin_internal_users_domain_roleperm.Type'
+        description: 功能类型
+      weight:
+        description: 权重
+        type: integer
+    type: object
+  github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermDeleteCmd:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermUpdateCmd:
+    properties:
+      desc:
+        description: 头像
+        type: string
+      icon:
+        description: 图标
+        type: string
+      id:
+        type: string
+      name:
+        description: 用户名
+        type: string
+      parentID:
+        description: 父节点ID
+        type: string
+      route:
+        description: 昵称
+        type: string
+      type:
+        allOf:
+        - $ref: '#/definitions/github_com_xiaohangshuhub_admin_internal_users_domain_roleperm.Type'
+        description: 功能类型
+      weight:
+        description: 权重
+        type: integer
+    type: object
+  github_com_xiaohangshuhub_admin_internal_users_app_roleperm.RoleCreateCmd:
+    properties:
+      desc:
+        description: 头像
+        type: string
+      name:
+        description: 名
+        type: string
+      parentID:
+        description: 父节点ID
+        type: string
+      permIds:
+        description: 权限
+        items:
+          type: string
+        type: array
+      role:
+        description: 角色
+        type: string
+    type: object
+  github_com_xiaohangshuhub_admin_internal_users_app_roleperm.RoleDeleteCmd:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_xiaohangshuhub_admin_internal_users_app_roleperm.RoleUpdateCmd:
+    properties:
+      desc:
+        description: 头像
+        type: string
+      id:
+        description: ID
+        type: string
+      name:
+        description: 名称
+        type: string
+      parentID:
+        description: 父节点ID
+        type: string
+      permIds:
+        description: 权限
+        items:
+          type: string
+        type: array
+      role:
+        description: 角色
+        type: string
+    type: object
   github_com_xiaohangshuhub_admin_internal_users_app_user.CreateCmd:
     properties:
       avatar:
@@ -32,11 +140,39 @@ definitions:
         description: 用户名
         type: string
     type: object
+  github_com_xiaohangshuhub_admin_internal_users_app_user.DeleteCmd:
+    properties:
+      id:
+        type: string
+    type: object
   github_com_xiaohangshuhub_admin_internal_users_app_user.Login:
     properties:
       password:
         type: string
       username:
+        type: string
+    type: object
+  github_com_xiaohangshuhub_admin_internal_users_app_user.UpdateCmd:
+    properties:
+      avatar:
+        type: string
+      email:
+        type: string
+      gender:
+        $ref: '#/definitions/github_com_xiaohangshuhub_admin_internal_users_domain_user.Gender'
+      id:
+        type: string
+      nikename:
+        type: string
+      phone:
+        type: string
+      pwd:
+        type: string
+      roles:
+        items:
+          type: string
+        type: array
+      salt:
         type: string
     type: object
   github_com_xiaohangshuhub_admin_internal_users_app_user.UserDto:
@@ -52,21 +188,36 @@ definitions:
       username:
         type: string
     type: object
+  github_com_xiaohangshuhub_admin_internal_users_domain_roleperm.Type:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    type: integer
+    x-enum-comments:
+      Action: 操作
+      Menu: 菜单
+      MenuItem: 菜单项
+      Model: 模块
+      Service: 服务
+    x-enum-varnames:
+    - Service
+    - Model
+    - Menu
+    - MenuItem
+    - Action
   github_com_xiaohangshuhub_admin_internal_users_domain_user.Gender:
     enum:
     - 1
     - 2
     - 3
-    format: int32
     type: integer
     x-enum-comments:
       Female: 女
       Male: 男
       Unknown: 保密
-    x-enum-descriptions:
-    - 保密
-    - 男
-    - 女
     x-enum-varnames:
     - Unknown
     - Male
@@ -92,7 +243,124 @@ definitions:
 info:
   contact: {}
 paths:
+  /roleperm:
+    delete:
+      consumes:
+      - application/json
+      description: 删除权限
+      parameters:
+      - description: 删除权限参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermDeleteCmd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+      summary: 删除权限
+      tags:
+      - RolePerm
+    post:
+      consumes:
+      - application/json
+      description: 创建权限
+      parameters:
+      - description: 创建权限参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermCreateCmd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+      summary: 创建权限
+      tags:
+      - RolePerm
+    put:
+      consumes:
+      - application/json
+      description: 更新权限
+      parameters:
+      - description: 更新权限参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermUpdateCmd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+      summary: 更新权限
+      tags:
+      - RolePerm
   /user:
+    delete:
+      consumes:
+      - application/json
+      description: 删除用户
+      parameters:
+      - description: 删除用户参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_user.DeleteCmd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+      summary: 删除用户
+      tags:
+      - User
     post:
       consumes:
       - application/json
@@ -120,6 +388,35 @@ paths:
           schema:
             $ref: '#/definitions/internal_users_webapi.Response-bool'
       summary: 创建用户
+      tags:
+      - User
+    put:
+      consumes:
+      - application/json
+      description: 更新用户
+      parameters:
+      - description: 更新用户参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_user.UpdateCmd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/internal_users_webapi.Response-bool'
+      summary: 更新用户
       tags:
       - User
   /user/login:

@@ -4,7 +4,185 @@
         "contact": {}
     },
     "paths": {
+        "/roleperm": {
+            "put": {
+                "description": "更新权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RolePerm"
+                ],
+                "summary": "更新权限",
+                "parameters": [
+                    {
+                        "description": "更新权限参数",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermUpdateCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "更新成功",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "400": {
+                        "description": "请求参数错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "创建权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RolePerm"
+                ],
+                "summary": "创建权限",
+                "parameters": [
+                    {
+                        "description": "创建权限参数",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermCreateCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "创建成功",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "400": {
+                        "description": "请求参数错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "删除权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RolePerm"
+                ],
+                "summary": "删除权限",
+                "parameters": [
+                    {
+                        "description": "删除权限参数",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermDeleteCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "删除成功",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "400": {
+                        "description": "请求参数错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    }
+                }
+            }
+        },
         "/user": {
+            "put": {
+                "description": "更新用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "更新用户",
+                "parameters": [
+                    {
+                        "description": "更新用户参数",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_user.UpdateCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "更新成功",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "400": {
+                        "description": "请求参数错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "创建新用户123...",
                 "consumes": [
@@ -31,6 +209,50 @@
                 "responses": {
                     "200": {
                         "description": "创建成功",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "400": {
+                        "description": "请求参数错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/internal_users_webapi.Response-bool"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "删除用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "删除用户",
+                "parameters": [
+                    {
+                        "description": "删除用户参数",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_xiaohangshuhub_admin_internal_users_app_user.DeleteCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "删除成功",
                         "schema": {
                             "$ref": "#/definitions/internal_users_webapi.Response-bool"
                         }
@@ -98,6 +320,163 @@
         }
     },
     "definitions": {
+        "github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermCreateCmd": {
+            "type": "object",
+            "properties": {
+                "desc": {
+                    "description": "头像",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "parentID": {
+                    "description": "父节点ID",
+                    "type": "string"
+                },
+                "perm": {
+                    "description": "权限",
+                    "type": "string"
+                },
+                "route": {
+                    "description": "昵称",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "用户名",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "功能类型",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/github_com_xiaohangshuhub_admin_internal_users_domain_roleperm.Type"
+                        }
+                    ]
+                },
+                "weight": {
+                    "description": "权重",
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermDeleteCmd": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_xiaohangshuhub_admin_internal_users_app_roleperm.PermUpdateCmd": {
+            "type": "object",
+            "properties": {
+                "desc": {
+                    "description": "头像",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "用户名",
+                    "type": "string"
+                },
+                "parentID": {
+                    "description": "父节点ID",
+                    "type": "string"
+                },
+                "route": {
+                    "description": "昵称",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "功能类型",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/github_com_xiaohangshuhub_admin_internal_users_domain_roleperm.Type"
+                        }
+                    ]
+                },
+                "weight": {
+                    "description": "权重",
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_xiaohangshuhub_admin_internal_users_app_roleperm.RoleCreateCmd": {
+            "type": "object",
+            "properties": {
+                "desc": {
+                    "description": "头像",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "名",
+                    "type": "string"
+                },
+                "parentID": {
+                    "description": "父节点ID",
+                    "type": "string"
+                },
+                "permIds": {
+                    "description": "权限",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "role": {
+                    "description": "角色",
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_xiaohangshuhub_admin_internal_users_app_roleperm.RoleDeleteCmd": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_xiaohangshuhub_admin_internal_users_app_roleperm.RoleUpdateCmd": {
+            "type": "object",
+            "properties": {
+                "desc": {
+                    "description": "头像",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "parentID": {
+                    "description": "父节点ID",
+                    "type": "string"
+                },
+                "permIds": {
+                    "description": "权限",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "role": {
+                    "description": "角色",
+                    "type": "string"
+                }
+            }
+        },
         "github_com_xiaohangshuhub_admin_internal_users_app_user.CreateCmd": {
             "type": "object",
             "properties": {
@@ -146,6 +525,14 @@
                 }
             }
         },
+        "github_com_xiaohangshuhub_admin_internal_users_app_user.DeleteCmd": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
         "github_com_xiaohangshuhub_admin_internal_users_app_user.Login": {
             "type": "object",
             "properties": {
@@ -153,6 +540,41 @@
                     "type": "string"
                 },
                 "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_xiaohangshuhub_admin_internal_users_app_user.UpdateCmd": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "gender": {
+                    "$ref": "#/definitions/github_com_xiaohangshuhub_admin_internal_users_domain_user.Gender"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "nikename": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "pwd": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "salt": {
                     "type": "string"
                 }
             }
@@ -177,9 +599,32 @@
                 }
             }
         },
+        "github_com_xiaohangshuhub_admin_internal_users_domain_roleperm.Type": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "x-enum-comments": {
+                "Action": "操作",
+                "Menu": "菜单",
+                "MenuItem": "菜单项",
+                "Model": "模块",
+                "Service": "服务"
+            },
+            "x-enum-varnames": [
+                "Service",
+                "Model",
+                "Menu",
+                "MenuItem",
+                "Action"
+            ]
+        },
         "github_com_xiaohangshuhub_admin_internal_users_domain_user.Gender": {
             "type": "integer",
-            "format": "int32",
             "enum": [
                 1,
                 2,
@@ -190,11 +635,6 @@
                 "Male": "男",
                 "Unknown": "保密"
             },
-            "x-enum-descriptions": [
-                "保密",
-                "男",
-                "女"
-            ],
             "x-enum-varnames": [
                 "Unknown",
                 "Male",
