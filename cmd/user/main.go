@@ -46,7 +46,7 @@ func main() {
 
 	app.UseAuthentication()
 	app.UseAuthorization()
-	app.MapRoute(webapi.UserApiV1EndPoint)
+	app.MapRoute(webapi.UserApiV1EndPoint, webapi.RolePermApiV1EndPoint)
 
 	app.Run()
 }
